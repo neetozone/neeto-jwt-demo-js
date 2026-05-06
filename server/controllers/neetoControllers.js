@@ -3,8 +3,8 @@ const User = require("../models/User");
 const { default: NeetoJWT } = require("neeto-jwt");
 
 const NEETO_PRODUCTS = {
-  neetocal: "https://spinkart.neetocal.net/admin",
-  neetorecord: "https://spinkart.neetorecord.net/admin",
+  neetocal: "https://spinkart.neetocal.com/admin",
+  neetorecord: "https://spinkart.neetorecord.com/admin",
 };
 
 exports.login = async (req, res) => {
