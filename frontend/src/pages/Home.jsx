@@ -5,8 +5,8 @@ export default function HomePage() {
   const { currentUser } = useContext(CurrentUserContext);
   const isLoggedIn = !!currentUser?.id;
 
-  const neetoCalUrl = `http://localhost:3000/api/neeto/${currentUser?.id}/neetocal`;
-  const neetoRecordUrl = `http://localhost:3000/api/neeto/${currentUser?.id}/neetorecord`;
+  const neetoCalUrl = `/api/neeto/${currentUser?.id}/neetocal`;
+  const neetoRecordUrl = `/api/neeto/${currentUser?.id}/neetorecord`;
 
   return (
     <>

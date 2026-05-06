@@ -1,16 +1,17 @@
 const { isAuthorized } = require("../utils/auth-utils");
 const User = require("../models/User");
-const { default: NeetoJWT } = require("../utils/NeetoJWT");
+const { default: NeetoJWT } = require("neeto-jwt");
 
 exports.login = async (req, res) => {
   const { id, productId } = req.params;
 
   if (!isAuthorized(id, req.session)) return res.sendStatus(403);
 
-  // TODO: Validate whether productId is valid (neetocal, neetorecord, etc).
+  const user = await User.find(req.session.userId);
+  const loginUrl = new NeetoJWT({ email: user.username }).generateLoginUrl(
+    productId,
+  );
+  console.log(loginUrl);
 
-  const user = await User.find(id);
-  const jwt = new NeetoJWT({ email: user.username }).generate();
-
-  res.redirect(`https://spinkart-jwt.${productId}.net/admin?jwt=${jwt}`);
+  res.redirect(loginUrl);
 };
