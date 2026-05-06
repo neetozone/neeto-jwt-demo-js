@@ -3,9 +3,8 @@ const User = require("../models/User");
 const { default: NeetoJWT } = require("neeto-jwt");
 
 const NEETO_PRODUCTS = {
-  neetocal: "http://spinkart.lvh.me:9000/admin/billing/neetocal/free-members",
-  neetorecord:
-    "http://spinkart.lvh.me:9000/admin/billing/neetorecord/free-members",
+  neetocal: "https://spinkart.neetocal.net/admin",
+  neetorecord: "https://spinkart.neetorecord.net/admin",
 };
 
 exports.login = async (req, res) => {
@@ -15,10 +14,9 @@ exports.login = async (req, res) => {
 
   const user = await User.find(req.session.userId);
   const redirectUri = NEETO_PRODUCTS[productId];
-  const loginUrl = new NeetoJWT({ email: user.username })
-    .generateLoginUrl
-    // redirectUri,
-    ();
+  const loginUrl = new NeetoJWT({ email: user.username }).generateLoginUrl(
+    redirectUri,
+  );
 
   res.redirect(loginUrl);
 };
