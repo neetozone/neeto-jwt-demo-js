@@ -16,6 +16,7 @@ exports.consumerLogin = async (req, res) => {
   const loginUrl = new NeetoJWT({
     email: user.username,
     scope: "consumer",
+    workspace: "spinkart"
   }).generateLoginUrl(redirectUri);
 
   res.redirect(loginUrl);
