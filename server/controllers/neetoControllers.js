@@ -14,9 +14,10 @@ exports.login = async (req, res) => {
 
   const user = await User.find(req.session.userId);
   const redirectUri = NEETO_PRODUCTS[productId];
-  const loginUrl = new NeetoJWT({ email: user.username }).generateLoginUrl(
-    redirectUri,
-  );
+  const loginUrl = new NeetoJWT({
+    email: user.username,
+    scope: "team-member",
+  }).generateLoginUrl(redirectUri);
 
   res.redirect(loginUrl);
 };
