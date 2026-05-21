@@ -6,7 +6,7 @@ const NEETO_PRODUCTS = {
   neetodesk: `https://${process.env.NEETO_JWT_WORKSPACE}.neetodesk.com/consumers/tickets`,
 };
 
-exports.consumerLogin = async (req, res) => {
+exports.customerLogin = async (req, res) => {
   const { id, productId } = req.params;
   if (!isAuthorized(id, req.session)) return res.sendStatus(403);
 
@@ -14,7 +14,7 @@ exports.consumerLogin = async (req, res) => {
   const redirectUri = NEETO_PRODUCTS[productId];
   const loginUrl = new NeetoJWT({
     email: user.username,
-    scope: "consumer",
+    scope: "customer",
   }).generateLoginUrl(redirectUri);
 
   res.redirect(loginUrl);

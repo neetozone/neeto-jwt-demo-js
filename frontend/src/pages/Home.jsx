@@ -5,7 +5,7 @@ export default function HomePage() {
   const { currentUser } = useContext(CurrentUserContext);
   const isLoggedIn = !!currentUser?.id;
 
-  const neetoDeskUrl = `/api/neeto/consumer/${currentUser?.id}/neetodesk`;
+  const neetoDeskUrl = `/api/neeto/customer/${currentUser?.id}/neetodesk`;
 
   return (
     <>

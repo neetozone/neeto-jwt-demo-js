@@ -51,9 +51,9 @@ app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 // Neeto Routes
 ///////////////////////////////
 app.get(
-  "/api/neeto/consumer/:id/:productId",
+  "/api/neeto/customer/:id/:productId",
   checkAuthentication,
-  neetoControllers.consumerLogin,
+  neetoControllers.customerLogin,
 );
 
 ///////////////////////////////
