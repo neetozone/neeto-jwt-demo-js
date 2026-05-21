@@ -14,6 +14,7 @@ const checkAuthentication = require('./middleware/checkAuthentication');
 // controller imports
 const authControllers = require('./controllers/authControllers');
 const userControllers = require('./controllers/userControllers');
+const neetoControllers = require('./controllers/neetoControllers');
 const app = express();
 
 // middleware
@@ -46,7 +47,14 @@ app.get('/api/users', checkAuthentication, userControllers.listUsers);
 app.get('/api/users/:id', checkAuthentication, userControllers.showUser);
 app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 
-
+///////////////////////////////
+// Neeto Routes
+///////////////////////////////
+app.get(
+  "/api/neeto/:id/:productId",
+  checkAuthentication,
+  neetoControllers.login,
+);
 
 ///////////////////////////////
 // Fallback Route
