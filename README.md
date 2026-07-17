@@ -1,16 +1,13 @@
 # A React+Express with Auth Template
 
-This repo can be used to start a React+Express project fully equipped with Auth
-for user creation and login.
+This repo can be used to start a React+Express project fully equipped with Auth for user creation and login.
 
 **Table of Contents**
 
 - [Getting Started](#getting-started)
   - [Create your repo](#create-your-repo)
-  - [Getting to know the folder
-    structure](#getting-to-know-the-folder-structure)
-  - [Configure your environment
-    variables](#configure-your-environment-variables)
+  - [Getting to know the folder structure](#getting-to-know-the-folder-structure)
+  - [Configure your environment variables](#configure-your-environment-variables)
   - [Kickstart the project](#kickstart-the-project)
   - [You're all set up now. Have Fun!](#youre-all-set-up-now-have-fun)
 - [Database](#database)
@@ -45,36 +42,28 @@ for user creation and login.
 ### Create your repo
 
 - First, make sure that you have a new GitHub Organization for your project.
-- Select <kbd>Use this template</kbd> and select <kbd>Create a new
-  repository</kbd>. Rename the repo and choose your GitHub organization as the
-  owner.
+- Select <kbd>Use this template</kbd> and select <kbd>Create a new repository</kbd>. Rename the repo and choose your GitHub organization as the owner. 
 - Clone your repo.
 
 ### Getting to know the folder structure
 
-In the root of this repository are the two directories you will be building the
-application in:
+In the root of this repository are the two directories you will be building the application in:
 
 - `frontend/` - the front-end application code (React)
 - `server/` - the back-end server application code
 
-Each of these sub-directories has its own `package.json` file with its own
-dependencies and scripts.
+Each of these sub-directories has its own `package.json` file with its own dependencies and scripts.
 
-The root of the project also has a `package.json` file for quickly
-building/running the full project.
+The root of the project also has a `package.json` file for quickly building/running the full project.
 
 ### Configure your environment variables
 
-Before you can actually start building, you need to create a database and
-configure your server to connect with it.
+Before you can actually start building, you need to create a database and configure your server to connect with it.
 
 - Create a database with a name of your choice
 - In the `server/` folder, copy the `.env.template` and name it `.env`.
-  - Update the `.env` variables to match your Postgres database information
-    (username, password, database name)
-  - Replace the `SESSION_SECRET` value with your own random string. This is used
-    to encrypt the cookie's `userId` value.
+  - Update the `.env` variables to match your Postgres database information (username, password, database name)
+  - Replace the `SESSION_SECRET` value with your own random string. This is used to encrypt the cookie's `userId` value.
 - Your `.env` file should look something like this:
 
 ```sh
@@ -94,37 +83,25 @@ PG_CONNECTION_STRING=''
 
 ### Kickstart the project
 
-With everything configured, you can now install dependencies in the `frontend`
-folder (React, etc...) and in the `server` folder (express, Knex, etc...) and
-run the provided migrations and seeds. Rather than doing this manually, we made
-some scripts to help you:
-- In the root of your project (outside of the `server` and `frontend` folder),
-  run the command `npm run kickstart`. This will build frontend static assets
-  and run migration and seeds on the backend
+With everything configured, you can now install dependencies in the `frontend` folder (React, etc...) and in the `server` folder (express, Knex, etc...) and run the provided migrations and seeds. Rather than doing this manually, we made some scripts to help you:
+- In the root of your project (outside of the `server` and `frontend` folder), run the command `npm run kickstart`. This will build frontend static assets and run migration and seeds on the backend
 
-Open up your database viewer (like TablePlus) and you should see that the
-migrations created a `users` table and the seeds populated it with three users!
+Open up your database viewer (like TablePlus) and you should see that the migrations created a `users` table and the seeds populated it with three users!
 * Check out the `server/db/seeds/init.js` file to see the users created
 
-During development, you can use the following commands from the root of the
-project
+During development, you can use the following commands from the root of the project
 - To start the server with the built static assets, run `npm start`
-- Open a new terminal and run `npm run dev:frontend` to run the frontend
-  development server
+- Open a new terminal and run `npm run dev:frontend` to run the frontend development server
 - Run `npm run build:frontend` to update the static assets in the frontend.
 
 
 ### You're all set up now. Have Fun!
 
-Below, you will find more information about this repository and how to work with
-it. Enjoy!
+Below, you will find more information about this repository and how to work with it. Enjoy!
 
 ## Database
 
-For this project, you should use a Postgres database. Make sure to set the
-environment variables for connecting to this database in the `.env` file. These
-values are loaded into the `knexfile.js` file using the `dotenv` package and the
-line of code:
+For this project, you should use a Postgres database. Make sure to set the environment variables for connecting to this database in the `.env` file. These values are loaded into the `knexfile.js` file using the `dotenv` package and the line of code:
 
 ```js
 require('dotenv').config(); // load the .env file
@@ -134,11 +111,9 @@ require('dotenv').config(); // load the .env file
 
 > For an overview of migrations and seeds, [check out these notes](https://github.com/The-Marcy-Lab-School/8-3-2-migrations-seeds).
 
-Migration files are stored in the `server/db/migrations` folder (this location
-is defined in the `knexfile.js` and can be changed if you so choose)
+Migration files are stored in the `server/db/migrations` folder (this location is defined in the `knexfile.js` and can be changed if you so choose)
 
-In `server/db/migrations`, you can see the migration files that generate the
-`users` table. The first one sets up some initial columns:
+In `server/db/migrations`, you can see the migration files that generate the `users` table. The first one sets up some initial columns:
 
 ```js
 exports.up = (knex) => {
@@ -151,18 +126,13 @@ exports.up = (knex) => {
 exports.down = (knex) => knex.schema.dropTable('users');
 ```
 
-This migration file will create a `users` table with an auto-generated and
-auto-incrementing `id` column, as well as `username` and `password_hash`
-columns.
+This migration file will create a `users` table with an auto-generated and auto-incrementing `id` column, as well as `username` and `password_hash` columns.
 
 #### Modifying / Adding New Migrations
 
-As you build your project, you will likely want to modify your tables. If this
-is the case, AVOID using the `migration:rollback`. Instead, *create a new
-migration that modifies the table*.
+As you build your project, you will likely want to modify your tables. If this is the case, AVOID using the `migration:rollback`. Instead, *create a new migration that modifies the table*.
 
-For example, the second migration file adds some timestamp columns to the
-existing `users` table.
+For example, the second migration file adds some timestamp columns to the existing `users` table.
 
 ```js
 exports.up = (knex) => {
@@ -180,27 +150,19 @@ exports.down = (knex) => {
 };
 ```
 
-Note that instead of using `knex.schema.createTable`, we are using `.alterTable`
-since the table already exists. We also use `.alterTable` in the `.down`
-function to drop the two columns created by `table.timestamps` if we ever did
-want to roll back these changes.
+Note that instead of using `knex.schema.createTable`, we are using `.alterTable` since the table already exists. We also use `.alterTable` in the `.down` function to drop the two columns created by `table.timestamps` if we ever did want to roll back these changes.
 
-- For more information, look into the [Knex
-  documentation](https://knexjs.org/guide/schema-builder.html)
+- For more information, look into the [Knex documentation](https://knexjs.org/guide/schema-builder.html)
 
 ### Seeds
 
 Seed files are stored in the `server/db/seeds` folder.
 
-The provided `init.js` seed file uses the `User.create` model method to generate
-the following data:
+The provided `init.js` seed file uses the `User.create` model method to generate the following data:
 
 ![](./documentation/readme-img/users-tableplus.png)
 
-Notice how the passwords have been hashed! This is because the `User.create`
-method uses the bcrypt hashing functions in the `server/utils/authUtils` file.
-If you didn't want to use the `User` model to create these resources, you could
-hash the passwords manually and then insert the data into the database like so:
+Notice how the passwords have been hashed! This is because the `User.create` method uses the bcrypt hashing functions in the `server/utils/authUtils` file. If you didn't want to use the `User` model to create these resources, you could hash the passwords manually and then insert the data into the database like so:
 
 ```js
 // don't forget to import the auth utils so you can hash your own passwords
@@ -226,52 +188,34 @@ exports.seed = async (knex) => {
 
 ## The Server Application
 
-The server is responsible for serving static assets as well as receiving and
-parsing client requests, getting data from the database, and sending responses
-back to the client.
+The server is responsible for serving static assets as well as receiving and parsing client requests, getting data from the database, and sending responses back to the client. 
 
-The server is organized into a few key components (from right to left in the
-diagram below):
-* The "Models" found in `server/models/` — responsible for interacting
-  directly with and returning data from the database. In this application, the
-  models will use `knex` to do this.
-* The "Controllers" found in `server/controllers/` — responsible for parsing
-  incoming requests, performing necessary server-side logic (like interacting
-  with models), and sending responses.
-* The "App" found in `server/index.js` — the hub of the server application,
-  created by Express, that is responsible for defining the endpoint URLs that
-  will be available in the application, and assigning controllers to handle each
-  endpoint. It also configures middleware.
+The server is organized into a few key components (from right to left in the diagram below):
+* The "Models" found in `server/models/` — responsible for interacting directly with and returning data from the database. In this application, the models will use `knex` to do this.
+* The "Controllers" found in `server/controllers/` — responsible for parsing incoming requests, performing necessary server-side logic (like interacting with models), and sending responses.
+* The "App" found in `server/index.js` — the hub of the server application, created by Express, that is responsible for defining the endpoint URLs that will be available in the application, and assigning controllers to handle each endpoint. It also configures middleware.
 
 ![](./documentation/readme-img/full-stack-diagram.svg)
 
 ### Interactions between components
 
-Each one of these components handles a specific task and **together they form a
-pipeline where each component takes in inputs and produces outputs**.
+Each one of these components handles a specific task and **together they form a pipeline where each component takes in inputs and produces outputs**. 
 
-As you build your application, seek to understand how these components interact
-and what each component needs from the others:
-* If a user wants to create a new user, they send a `POST` request with a
-  username and password to a particular endpoint defined by the `app`
+As you build your application, seek to understand how these components interact and what each component needs from the others:
+* If a user wants to create a new user, they send a `POST` request with a username and password to a particular endpoint defined by the `app`
 * The `app` assigns a specific controller to handle this request
-* The controller parses the username and password from the request and passes
-  them along to the `User` model.
-* The `User` model takes the username and password and executes an `INSERT` SQL
-  statement and returns newly created `user` object back to the controller
+* The controller parses the username and password from the request and passes them along to the `User` model.
+* The `User` model takes the username and password and executes an `INSERT` SQL statement and returns newly created `user` object back to the controller
 * The controller takes the `user` object and sends it back to the client.
 * The client now knows that the user was created successfully.
 
 ### User Model
 
-As mentioned above, a model is the right-most component of a server application.
-An application can have many models and each model is responsible for managing
-interactions with a particular table in a database.
+As mentioned above, a model is the right-most component of a server application. An application can have many models and each model is responsible for managing interactions with a particular table in a database.
 
 ![](./documentation/readme-img/full-stack-diagram.svg)
 
-The `User` model (defined in `server/db/models/User.js`) provides static methods
-for performing CRUD operations with the `users` table in the database:
+The `User` model (defined in `server/db/models/User.js`) provides static methods for performing CRUD operations with the `users` table in the database:
 * `User.list()`
 * `User.find(id)`
 * `User.findByUsername(username)`
@@ -279,19 +223,16 @@ for performing CRUD operations with the `users` table in the database:
 * `User.update(id, username)`
 * `User.deleteAll()`
 
-The controllers that use these methods can import the entire `User` class and
-then invoke the function that they need.
+The controllers that use these methods can import the entire `User` class and then invoke the function that they need.
 
 
 #### `User.create()` vs. the `User` constructor
 
-Note that there is both a `User.create()` method AND a `constructor()`. There is
-also an *instance* method `isValidPassword()`.
+Note that there is both a `User.create()` method AND a `constructor()`. There is also an *instance* method `isValidPassword()`.
 
 Let's look at how these three functions are related.
 
-First, the `User` model provides the `User.create` method for creating a new
-user in the database.
+First, the `User` model provides the `User.create` method for creating a new user in the database.
 
 ```js
 static async create(username, password) {
@@ -309,37 +250,23 @@ static async create(username, password) {
 }
 ```
 
-When we want to create a new user, we take the provided password and has it
-using `authUtils.hashPassword()` (which uses `bcrypt` under the hood). Then, we
-can execute an `INSERT` SQL statement to store the provided username and this
-hashed password in the database.
+When we want to create a new user, we take the provided password and has it using `authUtils.hashPassword()` (which uses `bcrypt` under the hood). Then, we can execute an `INSERT` SQL statement to store the provided username and this hashed password in the database.
 
 > Read about [dynamic queries with `knex.raw()` here](https://github.com/The-Marcy-Lab-School/8-2-2-knex?tab=readme-ov-file#dynamic-queries)
 
-Notice that when we get the data back from the database, we don't return the
-`rawUserData`. **We use the `new User()` constructor function** to create a
-`User` instance using that `rawUserData` and we return that instance. In fact,
-all of the class methods do this before returning.
+Notice that when we get the data back from the database, we don't return the `rawUserData`. **We use the `new User()` constructor function** to create a `User` instance using that `rawUserData` and we return that instance. In fact, all of the class methods do this before returning.
 
 Why?
 
 #### Validating Hashed Passwords
 
-Whenever we receive data from the database about a user, it will include the
-hashed password. We need to send that user's data to the frontend, but we don't
-want to include the password, even if it is hashed.
+Whenever we receive data from the database about a user, it will include the hashed password. We need to send that user's data to the frontend, but we don't want to include the password, even if it is hashed.
 
-Using the `constructor` is a clever trick of sorts that takes advantage of the
-**private instance property** feature of classes. Here is how:
-* By wrapping the `rawUserData` data from the database in a `new User()`
-  instance, we can make a private `#passwordHash` property.
+Using the `constructor` is a clever trick of sorts that takes advantage of the **private instance property** feature of classes. Here is how:
+* By wrapping the `rawUserData` data from the database in a `new User()` instance, we can make a private `#passwordHash` property.
 * The `#passwordHash` property can't be accessed except by the instance itself.
-* If our controller needs to verify the password for a given `User` instance, it
-  can do so using the instance method `isValidPassword` which DOES have access
-  to the private `#passwordHash` property.
-* `isValidPassword` uses the `authUtils.isValidPassword` helper function (which
-  uses `bcrypt.compare()`) to verify provided password against the stored
-  `#passwordHash`
+* If our controller needs to verify the password for a given `User` instance, it can do so using the instance method `isValidPassword` which DOES have access to the private `#passwordHash` property. 
+* `isValidPassword` uses the `authUtils.isValidPassword` helper function (which uses `bcrypt.compare()`) to verify provided password against the stored `#passwordHash`
 
 ```js
 class User {
@@ -362,11 +289,9 @@ class User {
 
 ### Controllers and API endpoints
 
-The controllers that interact with the `User` model are divided into two files:
-`userControllers` and `authControllers`. These controller files each export a
-controller function that are assigned to a particular API endpoint the `app`.
+The controllers that interact with the `User` model are divided into two files: `userControllers` and `authControllers`. These controller files each export a controller function that are assigned to a particular API endpoint the `app`.
 
-In all, the following API endpoints are provided:
+In all, the following API endpoints are provided: 
 
 **User Routes**:
 
@@ -387,8 +312,7 @@ In all, the following API endpoints are provided:
 
 ### The Login Flow
 
-So, how are these methods used? Let's look at the login flow. Below is the
-`loginUser` controller which is executed for the endpoint `POST /api/login`:
+So, how are these methods used? Let's look at the login flow. Below is the `loginUser` controller which is executed for the endpoint `POST /api/login`:
 
 
 ```js
@@ -408,20 +332,14 @@ exports.loginUser = async (req, res) => {
 };
 ```
 
-* First, the `User.findByUsername` function searches for a user in the database
-  with the provided `username`
+* First, the `User.findByUsername` function searches for a user in the database with the provided `username`
 * The value returned will be a `User` instance (or `null` if not found)
-* Next, the provided `password` needs to be verified to see if it matches the
-  password in the database. We can't look at `user.passwordHash` since it is
-  private, but we CAN use the `user.isValidPassword` to verify for us.
-* If both the user is found and the password matches, we send the user data to
-  the frontend.
+* Next, the provided `password` needs to be verified to see if it matches the password in the database. We can't look at `user.passwordHash` since it is private, but we CAN use the `user.isValidPassword` to verify for us.
+* If both the user is found and the password matches, we send the user data to the frontend.
 
 ### Middleware
 
-In `server/index.js`, various pieces of middleware are used. These pieces of
-middleware are either provided by `express` or are custom-made and found in the
-`server/middleware/` folder
+In `server/index.js`, various pieces of middleware are used. These pieces of middleware are either provided by `express` or are custom-made and found in the `server/middleware/` folder
 
 ```js
 app.use(handleCookieSessions); // adds a session property to each request representing the cookie
@@ -432,55 +350,35 @@ app.use(express.static(path.join(__dirname, '../frontend/dist'))); // Serve stat
 
 ## Authentication & Authorization
 
-- **authenticated** means "We have confirmed this person is a real user and is
-  allowed to be here"
+- **authenticated** means "We have confirmed this person is a real user and is allowed to be here"
   - For example, only logged in users can see the other users in this app
 
 - **authorized** means "This person is allowed to perform this protected action"
-  - For example, users are only authorized to edit their OWN profile (they can't
-    change someone else's profile)
+  - For example, users are only authorized to edit their OWN profile (they can't change someone else's profile)
 
 To implement this functionality, we'll use cookies.
 
 ### Cookies
 
-In the context of computing and the internet, a **cookie** is a small text file
-that is sent by a website to your web browser and stored on your computer or
-mobile device. Here is how they work:
+In the context of computing and the internet, a **cookie** is a small text file that is sent by a website to your web browser and stored on your computer or mobile device. Here is how they work:
 
 ![](./documentation/readme-img/cookies.png)
 
-* When a client sends an initial request to log in to the server, it doesn't
-  have a cookie. It just sends over the username and password to be
-  **authenticated**.
-* The server authenticates the user and sends a response along with a new cookie
-  with their user information encrypted.
-* The client can save that cookie and store it on the user's computer (many
-  client-side applications will ask you if you want to save it or not)
-* On all future client requests, if the client has a cookie it will be sent with
-  the request to the server. This will allow the user to be **authenticated**
-  without having to log in again and to be **authorized** to perform future
-  actions.
-* Because the cookie is saved locally, even if the user closes the application
-  and re-opens it later, the cookie will be sent along with all requests.
+* When a client sends an initial request to log in to the server, it doesn't have a cookie. It just sends over the username and password to be **authenticated**.
+* The server authenticates the user and sends a response along with a new cookie with their user information encrypted.
+* The client can save that cookie and store it on the user's computer (many client-side applications will ask you if you want to save it or not)
+* On all future client requests, if the client has a cookie it will be sent with the request to the server. This will allow the user to be **authenticated** without having to log in again and to be **authorized** to perform future actions.
+* Because the cookie is saved locally, even if the user closes the application and re-opens it later, the cookie will be sent along with all requests.
 
-For our purposes, our server can make a cookie that saves the `id` of the user
-that is logged in. Whenever the user returns to the site, the cookie can
-immediately tell us who they are. This can be used to re-authenticate and to
-authorize the user.
+For our purposes, our server can make a cookie that saves the `id` of the user that is logged in. Whenever the user returns to the site, the cookie can immediately tell us who they are. This can be used to re-authenticate and to authorize the user.
 
 > WARNING: When the server creates a cookie for the client, it has to be careful with what data is stored in the cookie because the client can manipulate that data and create its own cookies. Always make sure that data stored in a cookie is encrypted!
 
 ### Handle Cookie Sessions
 
-In our application, we are using `handleCookieSessions` middleware with our
-Express server to create cookies (and encrypt data stored on them) for us. We
-can access/manipulate those cookies by accessing the `req.session` object when
-handling incoming requests.
+In our application, we are using `handleCookieSessions` middleware with our Express server to create cookies (and encrypt data stored on them) for us. We can access/manipulate those cookies by accessing the `req.session` object when handling incoming requests. 
 
-To achieve authentication/authorization, we will store the `userId` of the
-currently logged-in user in the `req.session` object. For example, this is the
-`loginUser` controller found in `controllers/authControllers`
+To achieve authentication/authorization, we will store the `userId` of the currently logged-in user in the `req.session` object. For example, this is the `loginUser` controller found in `controllers/authControllers`
 
 ```js
 exports.loginUser = async (req, res) => {
@@ -497,26 +395,19 @@ exports.loginUser = async (req, res) => {
 };
 ```
 
-On future requests, if the `req.session.userId` value is missing, then there is
-not a currently logged in user. If there is a value, then there IS a logged in
-user.
+On future requests, if the `req.session.userId` value is missing, then there is not a currently logged in user. If there is a value, then there IS a logged in user.
 
 With this information we can:
-1. implement **authentication** (logging a user in / confirming that the user is
-   already logged in).
-2. implement **authorization** (confirm that the person who is logged in can do
-   what they have requested to do, such as edit their profile)
+1. implement **authentication** (logging a user in / confirming that the user is already logged in).
+2. implement **authorization** (confirm that the person who is logged in can do what they have requested to do, such as edit their profile)
 
-For example, suppose that a user logs in and then wants to edit their profile.
-The use of cookie data could look like this:
+For example, suppose that a user logs in and then wants to edit their profile. The use of cookie data could look like this:
 
 ![](./documentation/readme-img/authorization-diagram.svg)
 
 ### Check Authentication Middleware
 
-The `checkAuthentication` middleware verifies that the current user is logged in
-before processing a request. If there is no `userId` in `req.session`, any
-request that uses this middleware will be rejected with a 401 status code.
+The `checkAuthentication` middleware verifies that the current user is logged in before processing a request. If there is no `userId` in `req.session`, any request that uses this middleware will be rejected with a 401 status code.
 
 ```js
 // middleware/check-authentication.js
@@ -530,8 +421,7 @@ const checkAuthentication = (req, res, next) => {
 
 For example, only logged-in users should be able to edit their own user profile.
 
-Here, we specify that the `checkAuthentication` middleware should be used for
-only this one route.
+Here, we specify that the `checkAuthentication` middleware should be used for only this one route. 
 
 ```js
 app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
@@ -539,71 +429,45 @@ app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 
 ### Staying logged in with `GET /api/me`
 
-Cookies are a great way to authorize a user. They can also be used to
-**authenticate** a user (check to see if they are logged in).
+Cookies are a great way to authorize a user. They can also be used to **authenticate** a user (check to see if they are logged in).
 
-When a user logs in and gets their cookie, that cookie is stored locally across
-sessions (when the user closes the browser tab and re-opens it).
+When a user logs in and gets their cookie, that cookie is stored locally across sessions (when the user closes the browser tab and re-opens it).
 
-When the user returns to the site after logging in, they will have a cookie
-indicating their user id. The server can immediately send back the associated
-user and automatically log the client in.
+When the user returns to the site after logging in, they will have a cookie indicating their user id. The server can immediately send back the associated user and automatically log the client in.
 
 ![](./documentation/readme-img/authentication-diagram.svg)
 
 ## Front-end
 
-A server application can exist on its own but it becomes full-stack when paired
-with a front-end.
+A server application can exist on its own but it becomes full-stack when paired with a front-end.
 
-The front-end is responsible for handling user interactions, sending requests to
-the server application, and rendering content provided by the server.
+The front-end is responsible for handling user interactions, sending requests to the server application, and rendering content provided by the server.
 
-While it is developed as a React application and `.jsx` files, it will
-ultimately be built into static assets (HTML, CSS, and JS files that can be sent
-directly to the browser).
+While it is developed as a React application and `.jsx` files, it will ultimately be built into static assets (HTML, CSS, and JS files that can be sent directly to the browser).
 
-The frontend application is organized into a few key components (from right to
-left in the diagram below):
-* The "Adapters" found in `frontened/src/adapters/` — the front-end equivalent
-  of controllers, responsible for structuring requests sent to the server and
-  for parsing responses.
-* The "Pages" found in `frontend/src/pages/` — responsible for rendering
-  separate pages of the front-end application. These components make use of
-  sub-components defined in `frontend/src/components`
-* The "App" found in `frontend/src/App.jsx` — the hub of the frontend
-  application, it is the root component that is responsible for defining
-  frontend routes and establishing site-wide layout components (like the
-  navigation bar)
+The frontend application is organized into a few key components (from right to left in the diagram below):
+* The "Adapters" found in `frontened/src/adapters/` — the front-end equivalent of controllers, responsible for structuring requests sent to the server and for parsing responses.
+* The "Pages" found in `frontend/src/pages/` — responsible for rendering separate pages of the front-end application. These components make use of sub-components defined in `frontend/src/components`
+* The "App" found in `frontend/src/App.jsx` — the hub of the frontend application, it is the root component that is responsible for defining frontend routes and establishing site-wide layout components (like the navigation bar)
 
-* The `frontend/main.jsx` file actually renders the `App` component and provides
-  access to the `BrowserRouter` and the application's global Context.
-* The `index.html` file itself is the entry point of the entire application and
-  it loads the `main.jsx` file and any additional scripts.
+* The `frontend/main.jsx` file actually renders the `App` component and provides access to the `BrowserRouter` and the application's global Context.
+* The `index.html` file itself is the entry point of the entire application and it loads the `main.jsx` file and any additional scripts.
 
 
 ![](./documentation/readme-img/front-end.svg)
 
 ### Frontend Utils
 
-Let's again start at the right end of the diagram and talk about fetching.
-Provided in the `frontend/src/utils/fetchingUtils.js` file are a series of
-helper functions for formatting a fetch request.
+Let's again start at the right end of the diagram and talk about fetching. Provided in the `frontend/src/utils/fetchingUtils.js` file are a series of helper functions for formatting a fetch request.
 
-The `fetchHandler` function will actually send the `fetch` request, making sure
-that the response is valid and that the response is in JSON format before
-parsing.
+The `fetchHandler` function will actually send the `fetch` request, making sure that the response is valid and that the response is in JSON format before parsing. 
 
-If the front-end wants to make a `POST`/`PATCH`/`DELETE` request, an `options`
-object must be provided. Since these objects are mostly boilerplate, this
-`fetchingUtils` file also provides helpers for creating those `options` objects.
-All that you have to do is provide the `body` of the request:
+If the front-end wants to make a `POST`/`PATCH`/`DELETE` request, an `options` object must be provided. Since these objects are mostly boilerplate, this `fetchingUtils` file also provides helpers for creating those `options` objects. All that you have to do is provide the `body` of the request:
 
 
 ### Adapters
 
-An adapter is another layer of abstraction around the fetching process. Really,
-they are just helper functions for fetching from a specific server endpoint.
+An adapter is another layer of abstraction around the fetching process. Really, they are just helper functions for fetching from a specific server endpoint.
 
 Often, they will be short, like this from the `adapters/user-adapter.js` file:
 
@@ -617,26 +481,17 @@ export const getAllUsers = async () => {
 };
 ```
 * A `baseUrl` is defined for all adapters in this `user-adapter` file.
-* The `fetchHandler` will return a tuple with either the `users` data or the
-  `error`.
-* Here, we print the `error` if it exists but in more robust applications,
-  errors would be handled more gracefully, or they would potentially be
-  returned.
-* If `users` exists, we'll return it, otherwise return an empty array (thus
-  ignoring the `error`).
+* The `fetchHandler` will return a tuple with either the `users` data or the `error`.
+* Here, we print the `error` if it exists but in more robust applications, errors would be handled more gracefully, or they would potentially be returned.
+* If `users` exists, we'll return it, otherwise return an empty array (thus ignoring the `error`).
 
-While this code could easily be implemented within the `Users` page component
-that wants to perform this fetch, by separating this logic out, the `Users` page
-can be a little bit cleaner. This is immensely valuable as React components can
-easily become disorganized.
+While this code could easily be implemented within the `Users` page component that wants to perform this fetch, by separating this logic out, the `Users` page can be a little bit cleaner. This is immensely valuable as React components can easily become disorganized.
 
-Additionally, if multiple components make use of the same server endpoint, an
-adapter can be reused without re-writing the same logic.
+Additionally, if multiple components make use of the same server endpoint, an adapter can be reused without re-writing the same logic.
 
 ### Example Page Component
 
-Let's look at that `Users` page component! This page is responsible for fetching
-and displaying a list of all users in the database:
+Let's look at that `Users` page component! This page is responsible for fetching and displaying a list of all users in the database:
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -664,28 +519,16 @@ export default function UsersPage() {
 }
 ```
 
-* The `useState` hook is created to manage the fetched `users`. On the first
-  render, the `users` array will be empty. When the fetch is complete, `users`
-  will hold the fetched users.
-* The `useEffect` hook initiates an asynchronous fetch of all users, making use
-  of the `getAllUsers` helper function from the `adapters/user-adapter` file.
-  Notice how we can avoid using the `async`/`await` syntax by using the `.then`
-  syntax to handle the promise. Sometimes `.then` is better!
-* When this fetch is complete, `setUsers` will be invoked to re-render the
-  component with the fetched `users`.
-* The `users` array is mapped to render a `UserLink` for each user. On the first
-  render, nothing will appear. When the fetch is complete and the component
-  re-renders, we will see all users.
+* The `useState` hook is created to manage the fetched `users`. On the first render, the `users` array will be empty. When the fetch is complete, `users` will hold the fetched users.
+* The `useEffect` hook initiates an asynchronous fetch of all users, making use of the `getAllUsers` helper function from the `adapters/user-adapter` file. Notice how we can avoid using the `async`/`await` syntax by using the `.then` syntax to handle the promise. Sometimes `.then` is better! 
+* When this fetch is complete, `setUsers` will be invoked to re-render the component with the fetched `users`.
+* The `users` array is mapped to render a `UserLink` for each user. On the first render, nothing will appear. When the fetch is complete and the component re-renders, we will see all users.
 
 ### Current User Context
 
-The frontend uses a `CurrentUserContext` to provide the entire application with
-the currently logged in user and a function to set the currently logged in user.
+The frontend uses a `CurrentUserContext` to provide the entire application with the currently logged in user and a function to set the currently logged in user. 
 
-The first component to use this context is `App` which sets the current user
-after a successful `GET /api/me` request (the user had a cookie indicating they
-previously signed in). This is the first thing that happens whenever a user
-visits the web application.
+The first component to use this context is `App` which sets the current user after a successful `GET /api/me` request (the user had a cookie indicating they previously signed in). This is the first thing that happens whenever a user visits the web application.
 
 ```js
 export default function App() {
@@ -698,12 +541,9 @@ export default function App() {
 }
 ```
 
-Once the `currentUser` is set in context, it can be used by any page.
+Once the `currentUser` is set in context, it can be used by any page. 
 
-For example, the `pages/Login` page redirects users away from the page if the
-`currentUser` value is set (we don't want signed-in users to be able to view the
-login page). It uses the `currentUser.id` value to redirect the user to their
-specific profile page.
+For example, the `pages/Login` page redirects users away from the page if the `currentUser` value is set (we don't want signed-in users to be able to view the login page). It uses the `currentUser.id` value to redirect the user to their specific profile page.
 
 ```js
 const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -713,29 +553,22 @@ if (currentUser) return <Navigate to={`/users/${currentUser.id}`} />;
 
 Below are the pages/components that use the context:
 * `components/SiteHeadingAndNav`
-  * if a user is logged in show a link to view their own profile and a link to
-    see all users, otherwise show the login/sign up buttons in the nav
+  * if a user is logged in show a link to view their own profile and a link to see all users, otherwise show the login/sign up buttons in the nav
 * `pages/Login`
   * if a user is already logged in, it navigates back to the home page.
-  * otherwise, this page can set the current user after a successful `POST
-    /api/login` request
+  * otherwise, this page can set the current user after a successful `POST /api/login` request
 * `pages/SignUp`
   * if a user is already logged in, it navigates back to the home page.
-  * otherwise, this page can set the current user after a successful `POST
-    /api/users` request
+  * otherwise, this page can set the current user after a successful `POST /api/users` request
 * `pages/User`
-  * if the currently logged in user matches the current profile page, the user
-    can edit the profile and log out
-  * if the user logs out, it sets the current logged in user to `null` before
-    navigating back home.
+  * if the currently logged in user matches the current profile page, the user can edit the profile and log out
+  * if the user logs out, it sets the current logged in user to `null` before navigating back home.
 
 ## Deploying
 
-We recommend deploying using Render.com. It offers free hosting of web servers
-and PostgreSQL databases with minimal limitations.
+We recommend deploying using Render.com. It offers free hosting of web servers and PostgreSQL databases with minimal limitations.
 
-Follow the steps below to create a PostgreSQL database hosted by Render and
-deploy a web application forked from this repository:
+Follow the steps below to create a PostgreSQL database hosted by Render and deploy a web application forked from this repository:
 
 1. Make an account on https://render.com/
 2. Create a PostgreSQL Server
@@ -745,8 +578,7 @@ deploy a web application forked from this repository:
      - **Region**: `US East (Ohio)`
      - **Instance Type**: Free
    - Select <kbd>Create Database</kbd>
-   - Keep the created database page open. You will need the `Internal Database
-     URL` value from this page for step 4
+   - Keep the created database page open. You will need the `Internal Database URL` value from this page for step 4
 3. Deploy Your Express Server
    - https://dashboard.render.com/ and click on <kbd>New +</kbd>
    - Select <kbd>Web Service</kbd>
@@ -761,11 +593,9 @@ deploy a web application forked from this repository:
      - **Build Command**: `npm build`
      - **Start Command**: `npm start`
      - **Instance Type**: Free
-   - Select <kbd>Create Web Service</kbd> (Note: The first build will fail
-     because you need to set up environment variables)
+   - Select <kbd>Create Web Service</kbd> (Note: The first build will fail because you need to set up environment variables)
 4. Set up environment variables
-   - From the Web Service you just created, select <kbd>Environment</kbd> on the
-     left side-menu
+   - From the Web Service you just created, select <kbd>Environment</kbd> on the left side-menu
    - Under Secret Files, select <kbd>Add Secret File</kbd>
      - **Filename**: `.env`
      - **Contents**:
@@ -782,26 +612,16 @@ deploy a web application forked from this repository:
    - Click <kbd>Save Changes</kbd>
 
 5. Future changes to your code
-   - If you followed these steps, your Render server will automatically redeploy
-     whenever the main branch is committed to. To update the deployed
-     application, simply commit to main.
-   - For front-end changes, make sure to run `npm run build` to update the
-     contents of the `public/` folder and push those changes.
+   - If you followed these steps, your Render server will automatically redeploy whenever the main branch is committed to. To update the deployed application, simply commit to main.
+   - For front-end changes, make sure to run `npm run build` to update the contents of the `public/` folder and push those changes.
 
 ## Advice
 
 ### Do not trust the front end
 
-Remember, **DO NOT TRUST THE FRONT-END**. Validate everything on the server.
-Just because you write logic to prevent a form from submitting on the front-end
-doesn't mean a nefarious actor couldn't just pop open a console and make a
-`fetch` request there. Also, the front-end can be buggy and mistakes can happen.
+Remember, **DO NOT TRUST THE FRONT-END**. Validate everything on the server. Just because you write logic to prevent a form from submitting on the front-end doesn't mean a nefarious actor couldn't just pop open a console and make a `fetch` request there. Also, the front-end can be buggy and mistakes can happen.
 
 ### Be wary of errors
 
-Given time constraints, this project is handling barely any errors. The model is
-very brittle right now, the server and sql errors should be handled like we've
-done before. We're also only handling the most basic of flows and errors on the
-client. Things like handling attempted recreations of users who already exist or
-even wrong passwords can be handled much more delicately.
+Given time constraints, this project is handling barely any errors. The model is very brittle right now, the server and sql errors should be handled like we've done before. We're also only handling the most basic of flows and errors on the client. Things like handling attempted recreations of users who already exist or even wrong passwords can be handled much more delicately.
 
